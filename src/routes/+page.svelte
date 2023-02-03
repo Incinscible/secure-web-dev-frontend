@@ -45,6 +45,7 @@
         body: JSON.stringify({ username, password })
       });
 
+      
       const data = await response.json();
       console.log(data)
       jwt.set(data.jwt)
