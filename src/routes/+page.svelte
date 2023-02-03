@@ -1,9 +1,35 @@
 <script>
   import { goto } from "$app/navigation";
-  import { jwt } from './store.js';
+  import { jwt, role } from './store.js';
   let username = "";
   let password = "";
   let jwtToken = "";
+
+  async function roleUser() {
+    console.log("LA MALA EST GANGX")
+    try {
+      const response = await fetch('http://localhost:3000/users/me', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${$jwt}`
+        }
+      });
+
+      const data = await response.json();
+      role.set(data.role);
+      console.log($role);
+      if (data) {
+        console.log("User logged in successfully");
+        // redirect the user to the dashboard or show a message
+      } else {
+        console.log("Invalid username or password");
+        // show an error message
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -22,6 +48,7 @@
       const data = await response.json();
       console.log(data)
       jwt.set(data.jwt)
+      await roleUser();
       jwtToken=data.jwt;
       console.log("jwtToken :", jwtToken);
       console.log("JWT :", $jwt);
@@ -50,7 +77,7 @@
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${jwtToken}`
+          'Authorization': `Bearer ${$jwt}`
         },
       });
       // console.log(`Bearer ${jwtToken}`);
