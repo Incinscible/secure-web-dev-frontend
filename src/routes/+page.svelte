@@ -124,9 +124,9 @@
   <button type="submit">Register</button>
 </form>
 
-<form on:submit|preventDefault={handleLocations}>
+<!-- <form on:submit|preventDefault={handleLocations}>
   
   <br />
   <button type="submit">Voir locations</button>
-</form>
+</form> -->
 

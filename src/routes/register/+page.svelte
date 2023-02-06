@@ -5,22 +5,27 @@
     let username = "";
   let password = "";
   let jwtToken = "";
+  let secretPasswordRole = "";
+  let role = "user";
 
   async function handleSubmit(event) {
     event.preventDefault();
     console.log("username:", username);
     console.log("password:", password);
-
+    if (secretPasswordRole=="yolegang") {
+        role="admin";
+    }
     try {
       const response = await fetch('http://localhost:3000/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ username, password, role })
       });
 
       const data = await response.json();
+      role="user";
       console.log(data)
       jwt.set(data.jwt)
       jwtToken=data.jwt;
@@ -51,6 +56,8 @@
       Password:
       <input type="password" value={password} on:input={e => password = e.target.value} required />
     </label>
+    <br />
+    <span>Secret Password to be admin : <input type="password" bind:value={secretPasswordRole}></span> 
     <br />
     <button type="submit">Register</button>
   </form>

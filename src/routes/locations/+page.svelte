@@ -37,14 +37,16 @@
             const data = await response.json();
             console.log(data)
             listeLocations=data;
-            if (data.success) {
+            if (data) {
             console.log("User logged in successfully");
             // redirect the user to the dashboard or show a message
             } else {
+            goto("./");
             console.log("Invalid username or password");
             // show an error message
             }
         } catch (error) {
+            goto("./");
             console.error(error);
         }
     }
@@ -180,10 +182,14 @@
         handleLocations();
     }
 
+    function handleLogout() {
+        goto("./");
+    }
 
 </script>
 
 <h1>yo le gang : {$jwt}</h1>
+<div><button on:click={() => handleLogout()}>Logout</button></div>
 <div class="listeLocations">
     {$role}
 <ul>
