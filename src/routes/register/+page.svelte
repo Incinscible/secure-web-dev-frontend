@@ -10,8 +10,6 @@
 
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log("username:", username);
-    console.log("password:", password);
     if (secretPasswordRole=="yolegang") {
         role="admin";
     }
@@ -26,11 +24,8 @@
 
       const data = await response.json();
       role="user";
-      console.log(data)
       jwt.set(data.jwt)
       jwtToken=data.jwt;
-      console.log("jwtToken :", jwtToken);
-      console.log("JWT :", $jwt);
       if (data) {
         goto("./")
         console.log("User logged in successfully");

@@ -20,11 +20,6 @@
     onMount(handleLocations);
 
     async function handleLocations() {
-        // event.preventDefault();
-        // console.log("username:", username);
-        // console.log("password:", password);
-        // goto("./locations")
-        console.log("JWT :", $jwt)
         try {
             const response = await fetch('http://localhost:3000/locations', {
             method: 'GET',
@@ -33,9 +28,7 @@
                 'Authorization': `Bearer ${$jwt}`
             },
             });
-            // console.log(`Bearer ${jwtToken}`);
             const data = await response.json();
-            console.log(data)
             listeLocations=data;
             if (data) {
             console.log("User logged in successfully");
@@ -58,7 +51,6 @@
     }
 
     function handleEdit(obj) {
-        console.log("edit :", obj._id);
         idOnEdit = obj._id;
         idEnCours = "";
         id = obj._id;
@@ -72,11 +64,9 @@
         address = obj.address;
         startDate = obj.startDate;
         year = obj.year;
-        console.log("filmProducerName :", filmProducerName);
     }
 
     async function handleDelete(id) {
-        console.log("delete :", id);
         try {
             const response = await fetch(`http://localhost:3000/locations/${id}`, {
             method: 'DELETE',
@@ -85,7 +75,6 @@
                 'Authorization': `Bearer ${$jwt}`
             },
             });
-            // console.log(`Bearer ${jwtToken}`);
             const data = await response.json();
             if (data.success) {
             console.log("User logged in successfully");
@@ -101,7 +90,6 @@
     }
 
     function handleSee(id) {
-        console.log("see :", id);
         idEnCours = id;
         idOnEdit = "";
     }
@@ -117,10 +105,7 @@
             body: JSON.stringify({ filmType, filmProducerName, endDate, filmName, district, geolocation, sourceLocationId,
             filmDirectorName, address, startDate, year })
             });
-
-            // console.log(`Bearer ${jwtToken}`);
             const data = await response.json();
-            console.log(data);
             if (data) {
             console.log("User logged in successfully");
             // redirect the user to the dashboard or show a message
@@ -165,10 +150,7 @@
             body: JSON.stringify({ filmType, filmProducerName, endDate, filmName, district, geolocation, sourceLocationId,
             filmDirectorName, address, startDate, year })
             });
-
-            // console.log(`Bearer ${jwtToken}`);
             const data = await response.json();
-            console.log(data);
             if (data) {
             console.log("User logged in successfully");
             // redirect the user to the dashboard or show a message
@@ -188,10 +170,9 @@
 
 </script>
 
-<h1>yo le gang : {$jwt}</h1>
+<h1>Liste Locations</h1>
 <div><button on:click={() => handleLogout()}>Logout</button></div>
 <div class="listeLocations">
-    {$role}
 <ul>
 {#each listeLocations as objet}
     <!-- svelte-ignore a11y-click-events-have-key-events -->
