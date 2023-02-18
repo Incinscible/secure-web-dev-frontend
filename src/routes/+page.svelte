@@ -1,13 +1,13 @@
 <script>
   import { goto } from "$app/navigation";
-  import { jwt, role } from './store.js';
+  import { jwt, role, myURL } from './store.js';
   let username = "";
   let password = "";
   let jwtToken = "";
 
   async function roleUser() {
     try {
-      const response = await fetch('http://localhost:3000/users/me', {
+      const response = await fetch($myURL + '/users/me', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -33,7 +33,7 @@
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/users/login', {
+      const response = await fetch($myURL + '/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

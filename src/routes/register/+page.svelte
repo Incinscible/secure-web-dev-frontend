@@ -1,6 +1,6 @@
 <script>
     import { goto } from "$app/navigation";
-    import { jwt } from '../store.js';
+    import { jwt, myURL } from '../store.js';
 
     let username = "";
   let password = "";
@@ -14,7 +14,7 @@
         role="admin";
     }
     try {
-      const response = await fetch('http://localhost:3000/users/register', {
+      const response = await fetch($myURL + '/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

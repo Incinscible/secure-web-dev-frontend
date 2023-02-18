@@ -1,6 +1,6 @@
 <script>
     import { goto } from "$app/navigation";
-    import { jwt, role } from '../store.js';
+    import { jwt, role, myURL } from '../store.js';
     import { onMount } from 'svelte';
     let listeLocations = [];
     let idEnCours = "";
@@ -21,7 +21,7 @@
 
     async function handleLocations() {
         try {
-            const response = await fetch('http://localhost:3000/locations', {
+            const response = await fetch($myURL + '/locations', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -68,7 +68,7 @@
 
     async function handleDelete(id) {
         try {
-            const response = await fetch(`http://localhost:3000/locations/${id}`, {
+            const response = await fetch($myURL + `/locations/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -96,7 +96,7 @@
 
     async function handleModify() {
         try {
-            const response = await fetch(`http://localhost:3000/locations/${id}`, {
+            const response = await fetch($myURL + `/locations/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -141,7 +141,7 @@
 
     async function handleValidate() {
         try {
-            const response = await fetch(`http://localhost:3000/locations`, {
+            const response = await fetch($myURL + '/locations', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
