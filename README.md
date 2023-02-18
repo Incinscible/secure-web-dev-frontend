@@ -4,7 +4,7 @@ Install dependencies with `npm install` (or `pnpm install` or `yarn`)
 
 ## Back-end
 
-I used your back-end but I changed a line in the user services, in the function createOne :
+I used the backend of the teacher but I changed a line in the user services, in the function createOne :
 ```bash
 const saneData = { ...userData, role: "user" };
 ```
