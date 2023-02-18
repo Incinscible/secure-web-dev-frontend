@@ -5,14 +5,10 @@
     let username = "";
   let password = "";
   let jwtToken = "";
-  let secretPasswordRole = "";
   let role = "user";
 
   async function handleSubmit(event) {
     event.preventDefault();
-    if (secretPasswordRole=="yolegang") {
-        role="admin";
-    }
     try {
       const response = await fetch($myURL + '/users/register', {
         method: 'POST',
@@ -51,8 +47,6 @@
       Password:
       <input type="password" value={password} on:input={e => password = e.target.value} required />
     </label>
-    <br />
-    <span>Secret Password to be admin : <input type="password" bind:value={secretPasswordRole}></span> 
     <br />
     <button type="submit">Register</button>
   </form>
